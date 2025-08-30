@@ -1,6 +1,6 @@
 # 心愿墙应用 (Wish Wall) - Next.js + Appwrite
 
-一个功能完整的愿望分享应用，集成用户认证、朋友系统和多种可见性控制。
+一个功能完整的愿望分享应用，采用创新的关注系统和智能隐私控制，打造个性化社交体验。
 
 ## ✨ 主要功能
 
@@ -10,145 +10,181 @@
 - **互动系统**: 点赞和评论功能
 - **个人资料**: 查看统计数据和使用情况
 
-### 👥 朋友系统 (新功能)
-- **朋友管理**: 添加和管理朋友关系
-- **隐私控制**: 三种可见性级别
-  - 🌍 **公开**: 所有人可见
+### 👥 关注系统 (核心创新)
+- **智能朋友关系**: 双向关注自动成为朋友，无需额外确认
+- **个性化内容流**: 根据关注关系智能推荐内容
+- **隐私分层控制**: 三级可见性精确管理
+  - 🌍 **公开**: 所有用户可见
   - 🔒 **私人**: 仅自己可见
-  - 👥 **仅限朋友**: 仅朋友可见
-- **社交互动**: 查看他人愿望、直接添加朋友
-- **用户资料**: 查看特定用户的所有愿望和统计
+  - 👥 **仅限朋友**: 仅双向关注的朋友可见
+- **社交探索**: 发现有趣的用户并建立连接
+- **用户洞察**: 查看其他用户的完整愿望和统计数据
 
 ### 📊 数据统计
-- 愿望统计 (总数、公有、私有、仅朋友可见)
-- 收到的互动统计 (点赞、评论)
-- 朋友数量统计
+- 愿望统计 (按可见性分类)
+- 互动统计 (收到的点赞和评论)
+- 关注关系统计 (关注者/被关注者/朋友数量)
 
-## 🚀 快速开始
+---
 
-### 1. 环境配置
+# Wish Wall - Next.js + Appwrite
+
+A comprehensive wish-sharing application featuring an innovative following system and intelligent privacy controls for personalized social experiences.
+
+## ✨ Key Features
+
+### 🎯 Core Features
+- **User Authentication**: Email registration and login
+- **Wish Management**: Create, view, and categorize wishes
+- **Interaction System**: Like and comment functionality
+- **Personal Profile**: View statistics and usage data
+
+### 👥 Following System (Core Innovation)
+- **Smart Friendship**: Mutual following automatically creates friendships without additional confirmation
+- **Personalized Content Feed**: Intelligent content recommendations based on following relationships
+- **Privacy Layer Control**: Three-tier visibility with precise management
+  - 🌍 **Public**: Visible to all users
+  - 🔒 **Private**: Visible only to yourself
+  - 👥 **Friends Only**: Visible only to mutual followers (friends)
+- **Social Discovery**: Discover interesting users and establish connections
+- **User Insights**: View complete wish collections and statistics of other users
+
+### 📊 Data Analytics
+- Wish statistics (categorized by visibility)
+- Interaction statistics (received likes and comments)
+- Relationship statistics (followers/following/friends count)
+
+## 🚀 Quick Start
+
+### 1. Environment Setup
 ```bash
-# 克隆项目
-git clone <repository-url>
+# Clone the project
+git clone https://github.com/athemeroy/wish-wall-app.git
 cd wish-wall-app
 
-# 安装依赖
+# Install dependencies
 npm install
 
-# 配置环境变量
+# Configure environment variables
 cp env-template.txt .env.local
-# 编辑 .env.local 文件，填入你的 Appwrite 配置
+# Edit .env.local with your Appwrite configuration
 ```
 
-### 2. Appwrite 数据库设置
+### 2. Appwrite Database Setup
 
-#### 必需的集合：
+#### Required Collections:
 
-**1. wishes 集合** (愿望)
-- `user_id` (string) - 用户ID
-- `title` (string) - 愿望标题
-- `content` (string) - 愿望内容
-- `category` (string) - 分类
-- `visibility` (string) - 可见性 (public/private/friends)
-- `tags` (string) - 标签
-- `like_count` (integer) - 点赞数
-- `comment_count` (integer) - 评论数
+**1. wishes Collection**
+- `user_id` (string) - User ID
+- `title` (string) - Wish title
+- `content` (string) - Wish content
+- `category` (string) - Category
+- `visibility` (string) - Visibility (public/private/friends)
+- `tags` (string) - Tags
+- `like_count` (integer) - Like count
+- `comment_count` (integer) - Comment count
 
-**2. wish_interactions 集合** (互动)
-- `wish_id` (string) - 愿望ID
-- `user_id` (string) - 用户ID
-- `type` (string) - 类型 (like/comment)
-- `content` (string) - 评论内容
+**2. wish_interactions Collection**
+- `wish_id` (string) - Wish ID
+- `user_id` (string) - User ID
+- `type` (string) - Type (like/comment)
+- `content` (string) - Comment content
 
-**3. follows 集合** (关注关系) ⭐ 新功能
-- `follower_id` (string) - 关注者ID
-- `following_id` (string) - 被关注者ID
-- `created_at` (datetime) - 关注时间
+**3. follows Collection** ⭐ Core Feature
+- `follower_id` (string) - Follower ID
+- `following_id` (string) - Following ID
+- `created_at` (datetime) - Follow time
 
-### 3. 启动应用
+### 3. Start the Application
 ```bash
 npm run dev
 ```
 
-## 🛠️ 功能使用指南
+## 🛠️ Usage Guide
 
-### 用户操作流程
-1. **注册/登录**: 使用邮箱注册或登录账户
-2. **创建愿望**: 点击 "Share Wish" 按钮创建新愿望
-3. **设置可见性**: 选择公开/私人/仅朋友可见
-4. **社交互动**: 在他人愿望卡片上可以直接添加朋友或查看用户
-5. **管理朋友**: 点击头像 → "Friends" 添加朋友
-6. **查看统计**: 点击头像 → "Profile" 查看个人统计
-7. **探索用户**: 点击愿望卡片上的眼睛图标查看该用户的所有愿望
+### User Journey
+1. **Sign Up/Login**: Register or login with your email
+2. **Create Wishes**: Click "Share Wish" to create new wishes
+3. **Set Visibility**: Choose public/private/friends-only visibility
+4. **Social Interaction**: Follow interesting users from their wish cards
+5. **Manage Relationships**: Click avatar → "Friends" to manage following
+6. **View Statistics**: Click avatar → "Profile" to see personal analytics
+7. **Explore Users**: Click eye icon on wish cards to view user's complete collection
 
-### 可见性说明
-- **🌍 公开**: 所有用户都能看到
-- **🔒 私人**: 只有你自己能看到
-- **👥 仅限朋友**: 只有你和你的朋友能看到
+### Visibility Explained
+- **🌍 Public**: Everyone can see your wishes
+- **🔒 Private**: Only you can see your wishes
+- **👥 Friends Only**: Only mutual followers (friends) can see your wishes
 
-### 朋友系统使用
-1. 点击头像打开菜单
-2. 选择 "Friends"
-3. 输入朋友的邮箱地址
-4. 点击 "Add" 发送朋友请求
-5. 创建仅朋友可见的愿望来测试功能
+### Following System Usage
+1. Click avatar to open menu
+2. Select "Friends" to manage relationships
+3. Browse public wishes and follow interesting users
+4. Mutual following automatically creates friendships
+5. Create friends-only wishes to share with your network
 
-## 📁 项目结构
+## 📁 Project Structure
 
 ```
 src/
 ├── app/
-│   ├── layout.js          # 主布局
-│   ├── page.js            # 主页面 (愿望墙)
-│   └── globals.css        # 全局样式
+│   ├── layout.js          # Main layout
+│   ├── page.js            # Main page (wish wall)
+│   └── theme-provider.js  # Theme provider
 ├── components/
-│   ├── AuthModal.js       # 认证模态框
-│   ├── CreateWishModal.js # 创建愿望模态框
-│   ├── WishCard.js        # 愿望卡片组件
-│   ├── ProfileModal.js    # 个人资料模态框 ⭐ 新功能
-│   ├── FollowModal.js     # 关注管理模态框 ⭐ 新功能
-│   ├── UserWishesModal.js # 用户愿望详情模态框
-│   ├── WishStatistics.js  # 愿望统计组件
-│   └── Header.js          # 页面头部
-└── lib/
-    └── appwrite.js        # Appwrite 配置
+│   ├── AuthModal.js       # Authentication modal
+│   ├── CreateWishModal.js # Create wish modal
+│   ├── WishCard.js        # Wish card component
+│   ├── FollowModal.js     # Following management modal ⭐
+│   ├── UserWishesModal.js # User wishes detail modal
+│   ├── WishStatistics.js  # Wish statistics component
+│   ├── ModalManager.js    # Modal state manager
+│   └── Header.js          # Page header
+├── hooks/
+│   ├── useAuth.js         # Authentication hook
+│   ├── useFollowing.js    # Following system hook ⭐
+│   └── useWishes.js       # Wishes management hook
+├── lib/
+│   └── appwrite.js        # Appwrite configuration
+└── utils/
+    └── wishQueries.js     # Wish query utilities
 ```
 
-## 🎯 技术栈
+## 🎯 Technology Stack
 
-- **前端**: Next.js 15, React, Material-UI
-- **后端**: Appwrite (数据库 + 认证)
-- **样式**: Material-UI + Tailwind CSS
-- **状态管理**: React Hooks
+- **Frontend**: Next.js 15, React 19, Material-UI
+- **Backend**: Appwrite (Database + Authentication)
+- **Styling**: Material-UI + Tailwind CSS
+- **State Management**: React Hooks
 
-## 🔧 开发和部署
+## 🔧 Development & Deployment
 
-### 本地开发
+### Local Development
 ```bash
-npm run dev          # 开发模式
-npm run build        # 生产构建
-npm run start        # 生产模式启动
+npm run dev          # Development mode
+npm run build        # Production build
+npm run start        # Production start
 ```
 
-### 环境变量配置
+### Environment Variables
 ```env
-NEXT_PUBLIC_APPWRITE_ENDPOINT=你的_Appwrite_端点
-NEXT_PUBLIC_APPWRITE_PROJECT_ID=你的项目ID
-NEXT_PUBLIC_APPWRITE_PROJECT_NAME=你的项目名称
+NEXT_PUBLIC_APPWRITE_ENDPOINT=your_appwrite_endpoint
+NEXT_PUBLIC_APPWRITE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_APPWRITE_PROJECT_NAME=your_project_name
 ```
 
-## 🚨 注意事项
+## 🚨 Important Notes
 
-- 确保 Appwrite 数据库中的集合和字段配置正确
-- 关注功能需要 `follows` 集合存在才能正常工作
-- 好友关系通过双向关注自动形成，无需额外配置
-- 首次运行可能需要等待数据库索引建立完成
+- Ensure Appwrite database collections and fields are configured correctly
+- Following system requires `follows` collection to function properly
+- Friendships are automatically created through mutual following
+- First run may require waiting for database indexes to be built
 
-## 📄 相关文档
+## 📄 Related Documentation
 
-- [Appwrite 官方文档](https://appwrite.io/docs) - 后端服务文档
-- [Next.js 文档](https://nextjs.org/docs) - 前端框架文档
+- [Appwrite Official Docs](https://appwrite.io/docs) - Backend service documentation
+- [Next.js Documentation](https://nextjs.org/docs) - Frontend framework documentation
 
 ---
 
-⭐ **如果这个项目对你有帮助，请给它一个星标！**
+⭐ **If this project helps you, please give it a star!**
