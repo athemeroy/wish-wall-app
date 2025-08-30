@@ -1,0 +1,11 @@
+# Appwrite Configuration Template
+# Copy this content to .env.local file in your project root
+
+# Your Appwrite Endpoint (usually https://cloud.appwrite.io/v1)
+NEXT_PUBLIC_APPWRITE_ENDPOINT=https://cloud.appwrite.io/v1
+
+# Your Project ID from Appwrite Console
+NEXT_PUBLIC_APPWRITE_PROJECT_ID=your_project_id_here
+
+# Your Project Name (optional)
+NEXT_PUBLIC_APPWRITE_PROJECT_NAME=Wish Wall

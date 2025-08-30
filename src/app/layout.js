@@ -1,11 +1,16 @@
+import { Inter } from 'next/font/google';
+import ThemeProvider from './theme-provider';
+
+const inter = Inter({ subsets: ['latin'] });
+
 export const metadata = {
-  title: "Appwrite + Next.js",
-  description: "Appwrite starter for Next.js",
+  title: "Wish Wall - Share Your Dreams",
+  description: "A social platform where people share their wishes, dreams, and aspirations with the community",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className}>
       <head>
         <link rel="icon" href="/appwrite.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,8 +21,10 @@ export default function RootLayout({ children }) {
         />
         <link rel="icon" type="image/svg+xml" href="/appwrite.svg" />
       </head>
-      <body className={"bg-[#FAFAFB] font-[Inter] text-sm text-[#56565C]"}>
-        {children}
+      <body>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
