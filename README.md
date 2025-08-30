@@ -1,33 +1,6 @@
-# 心愿墙应用 (Wish Wall) - Next.js + Appwrite
-
-一个功能完整的愿望分享应用，采用创新的关注系统和智能隐私控制，打造个性化社交体验。
-
-## ✨ 主要功能
-
-### 🎯 核心功能
-- **用户认证**: 邮箱注册和登录
-- **愿望管理**: 创建、查看、分类愿望
-- **互动系统**: 点赞和评论功能
-- **个人资料**: 查看统计数据和使用情况
-
-### 👥 关注系统 (核心创新)
-- **智能朋友关系**: 双向关注自动成为朋友，无需额外确认
-- **个性化内容流**: 根据关注关系智能推荐内容
-- **隐私分层控制**: 三级可见性精确管理
-  - 🌍 **公开**: 所有用户可见
-  - 🔒 **私人**: 仅自己可见
-  - 👥 **仅限朋友**: 仅双向关注的朋友可见
-- **社交探索**: 发现有趣的用户并建立连接
-- **用户洞察**: 查看其他用户的完整愿望和统计数据
-
-### 📊 数据统计
-- 愿望统计 (按可见性分类)
-- 互动统计 (收到的点赞和评论)
-- 关注关系统计 (关注者/被关注者/朋友数量)
-
----
-
 # Wish Wall - Next.js + Appwrite
+
+[![中文文档](https://img.shields.io/badge/文档-中文-blue)](README_cn.md)
 
 A comprehensive wish-sharing application featuring an innovative following system and intelligent privacy controls for personalized social experiences.
 
